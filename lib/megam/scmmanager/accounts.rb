@@ -1,5 +1,5 @@
 module Megam
-  class Scm
+  class Scmmanager
     # GET /accounts
     #Yet to be tested
     def get_accounts(email)

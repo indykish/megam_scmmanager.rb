@@ -25,7 +25,7 @@ module Megam
     MEGAM_AUTH              = "Megam::Auth".freeze
     MEGAM_ERROR             = "Megam::Error".freeze
     MEGAM_ACCOUNT           = "Megam::Account".freeze
-    
+    MEGAM_REPO              = "Megam::Repo".freeze
     
     class <<self
       # Increase the max nesting for JSON, which defaults
@@ -105,7 +105,8 @@ module Megam
           Megam::Auth
         when MEGAM_ACCOUNT
           Megam::Account     
-        
+        when MEGAM_REPO
+          Megam::Repo
         else
         raise JSON::ParserError, "Unsupported `json_class` type '#{json_class}'"
         end

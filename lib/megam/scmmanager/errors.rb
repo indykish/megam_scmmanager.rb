@@ -1,5 +1,5 @@
 module Megam
-  class Scm
+  class Scmmanager
     module Errors
       class Error < StandardError; end
 

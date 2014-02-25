@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "megam/scm/version"
+require "megam/scmmanager/version"
 
 Gem::Specification.new do |s|
   s.name        = "megam_scmmanager"
-  s.version     = Megam::Scm::VERSION
+  s.version     = Megam::Scmmanager::VERSION
   s.authors     = ["Raj Thilak,Kishorekumar Neelamegam, Thomas Alrin"]
   s.email       = ["rajthilak@megam.co.in","nkishore@megam.co.in","alrin@megam.co.in"]
   s.homepage    = "http://github.com/indykish/megam_scmmanager.rb"
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.add_runtime_dependency 'megam_api'
   s.add_runtime_dependency 'highline'
+  s.add_runtime_dependency 'nokogiri'
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'rake'
 end

@@ -1,5 +1,5 @@
 module Megam
-  class Scm
+  class Scmmanager
     VERSION = "0.1.0"
   end
 end

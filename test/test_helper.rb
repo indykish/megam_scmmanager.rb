@@ -1,4 +1,4 @@
-require File.expand_path("#{File.dirname(__FILE__)}/../lib/megam/scm")
+require File.expand_path("#{File.dirname(__FILE__)}/../lib/megam/scmmanager")
 
 require 'rubygems'
 gem 'minitest' # ensure we are using the gem version
@@ -13,13 +13,13 @@ SANDBOX_HOST_OPTIONS = {
 
 def megam(options)  
   options = SANDBOX_HOST_OPTIONS.merge(options)
-  mg=Megam::Scm.new(options)  
+  mg=Megam::Scmmanager.new(options)  
 end
 
 def megams(options={})  
 s_options = SANDBOX_HOST_OPTIONS.merge(options)
   #options = s_options.merge(options)
-  mg=Megam::Scm.new(s_options)  
+  mg=Megam::Scmmanager.new(s_options)  
 end
 
 def sandbox_json

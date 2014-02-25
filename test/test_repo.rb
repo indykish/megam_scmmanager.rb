@@ -1,5 +1,5 @@
 require File.expand_path("#{File.dirname(__FILE__)}/test_helper")
-
+require 'nokogiri'
 class TestScm < MiniTest::Unit::TestCase
 
   #def test_post_json    
@@ -7,14 +7,11 @@ class TestScm < MiniTest::Unit::TestCase
     #assert_equal(200, response.status)
   #end
   
- # def test_get_json    
-  #  response =megams.get_repos()
- #   assert_equal(200, response.status)
- # end
-
-  def test_login
-    response= megams.get_login("scmadmin", "scmadmin", true)
-  end
+def test_get_json    
+   response =megams.get_repos(nil, nil)
+   #puts(response.body)   
+    assert_equal(200, response.code)
+  end  
 
 end
 

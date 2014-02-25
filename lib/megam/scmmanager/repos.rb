@@ -1,8 +1,8 @@
 module Megam
-  class Scm
+  class Scmmanager
     # GET /accounts
     #Yet to be tested
-    def get_repos()
+    def get_repos(username, password)
 
       @options = {:path => "/repositories",
         :body => ''}.merge(@options)
@@ -10,21 +10,11 @@ module Megam
       request(
         :expects  => 200,
         :method   => :get,
+        :username => username,
+        :password => password,
         :body     => @options[:body]
       )
-    end
-    
-    def get_login(username, password, rememberme)
-
-      @options = {:path => "/authentication/login",
-        :body => '', :query => {:username => username, :password => password, :rememberMe => rememberme} }.merge(@options)
-
-      request(
-        :expects  => 200,
-        :method   => :post,
-        :body     => @options[:body]
-      )
-    end
+    end 
     
   end
 end
