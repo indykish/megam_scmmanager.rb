@@ -1,0 +1,11 @@
+language: ruby
+
+notifications:
+    email:
+    recipients:
+      - rajthilak@megam.co.in
+
+rvm:
+  - 2.1.0
+  
+script: bundle exec rake
