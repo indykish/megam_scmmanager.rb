@@ -36,9 +36,19 @@ module Megam
     def self.list(username, password)
       #acct = self.new(username, password)
       megams = Megam::Scmmanager.new
-      repos = megams.get_repos(username, password)
-      self.to_hash(repos)
+      res = megams.get_repos(username, password)
+      hash = {}
+      if res.code != "200"
+         hash = self.error(res)
+       else
+         hash = self.to_hash(res)
+      end      
+      hash
     end
+
+   def self.error(response)
+     {:status => response.code, :body => "", :some_msg => response.message }
+   end
 
     def to_s
       Megam::Stuff.styled_hash(to_hash)
