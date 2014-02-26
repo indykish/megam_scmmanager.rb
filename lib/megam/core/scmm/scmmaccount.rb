@@ -15,7 +15,7 @@
 #
 
 module Megam
-  class Account 
+  class ScmmAccount 
     def initialize(name=nil, displayName=nil, mail=nil, password=nil)
       @creationDate = nil
       @admin = nil

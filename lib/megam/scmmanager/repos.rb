@@ -2,7 +2,7 @@ module Megam
   class Scmmanager
     # GET /accounts
     #Yet to be tested
-    def get_repos(username, password)
+    def get_repos(username=nil, password=nil)
 
       @options = {:path => "/repositories",
         :body => ''}.merge(@options)

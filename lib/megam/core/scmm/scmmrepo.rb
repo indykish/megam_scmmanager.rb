@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 module Megam
-  class Repo   
+  class ScmmRepo   
 
     # Transform the ruby obj ->  to a Hash
     def self.to_hash(response)

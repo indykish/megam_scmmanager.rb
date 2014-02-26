@@ -11,20 +11,14 @@ end
 
 require "megam/scmmanager/version"
 require "megam/scmmanager/accounts"
+require "megam/scmmanager/dumpout"
 require "megam/scmmanager/errors"
 require "megam/scmmanager/repos"
-require "megam/core/json_compat"
-require "megam/core/stuff"
-require "megam/core/text"
-require "megam/core/repo"
-require "megam/core/account"
-require "megam/core/error"
+require "megam/core/scmm/scmmrepo"
+require "megam/core/scmm/scmmaccount"
 
 module Megam
   class Scmmanager
-
-    #text is used to print stuff in the terminal (message, log, info, warn etc.)
-    attr_accessor :text
 
     HEADERS = {
       'Accept' => 'application/json',
@@ -46,7 +40,7 @@ module Megam
     AUTH_PATH="/authentication/login"
 
     def text
-      @text ||= Megam::Text.new(STDOUT, STDERR, STDIN, {})
+      @text ||= Megam::Dumpout.new(STDOUT, STDERR, STDIN)
     end
 
     def last_response
@@ -60,24 +54,21 @@ module Megam
 
     def request(params, &block)
       start = Time.now
-      puts "================="
       puts params
       text.msg "#{text.color("START", :cyan, :bold)}"
-      if params[:username] == nil
-        username = ENV['MEGAM_SCMADMIN_USERNAME']
-        password = ENV['MEGAM_SCMADMIN_PASSWORD']
-      else
-        username = params[:username]
-        password = params[:password]  
-      end      
+      username =  params[:username] || ENV['MEGAM_SCMADMIN_USERNAME']
+      password =  params[:password]  || ENV['MEGAM_SCMADMIN_PASSWORD']
+      raise ArgumentError, "You must specify [:username, :password]" if username.nil? || password.nil?
+      text.msg "#{text.color("Got username[#{username}] [*******]", :red, :bold)}"
+
       begin
-        http = connection
-        http.use_ssl = false
-        http.start do |http|
+        httpcon = connection
+        httpcon.use_ssl = false
+        httpcon.start do |http|
           request = Net::HTTP::Get.new(@options[:path])
           request.basic_auth username, password
           @response = http.request(request)
-        end       
+        end
       end
       @response
     end
